@@ -10,7 +10,7 @@ wait_for_resource() {
     local resource_name=$2
     local timeout=120  
     
-    echo "Ожидание готовности ${resource_type}/${resource_name}..."
+    echo "Ждемс ${resource_type}/${resource_name}..."
     kubectl wait --for=condition=ready --timeout=${timeout}s ${resource_type}/${resource_name} || {
         echo "Таймаут ожидания ${resource_type}/${resource_name}"
         kubectl describe ${resource_type} ${resource_name}
@@ -43,7 +43,7 @@ apply_manifests() {
                     ;;
             esac
         else
-            echo "Предупреждение: файл ${file} не найден"
+            echo "файл ${file} не найден"
         fi
     done
 }
