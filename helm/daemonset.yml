@@ -1,39 +1,3 @@
-# apiVersion: apps/v1
-# kind: DaemonSet
-# metadata:
-#   name: log-agent
-# spec:
-#   selector:
-#     matchLabels:
-#       app: log-agent
-#   template:
-#     metadata:
-#       labels:
-#         app: log-agent
-#     spec:
-#       containers:
-#       - name: log-collector
-#         image: busybox
-#         command: ["sh", "-c"]
-#         args:
-#           - |
-#             while true; do
-#               if [ -f "/host/logs/app.log" ]; then
-#                 echo "Found logs at /host/logs/app.log"
-#                 tail -F /host/logs/app.log
-#               else
-#                 echo "Waiting for logs to appear..."
-#                 sleep 10
-#               fi
-#             done
-#         volumeMounts:
-#         - name: app-logs
-#           mountPath: /host/logs
-#       volumes:
-#       - name: app-logs
-#         hostPath:
-#           path: /var/lib/kubelet/pods
-#           type: Directory
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
