@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: app-destinationrule
+spec:
+  host: app-service.default.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: LEAST_CONN
+    connectionPool:
+      tcp: 
+        maxConnections: 3
+      http:
+        http2MaxRequests: 5
+    tls:
+      mode: ISTIO_MUTUAL
